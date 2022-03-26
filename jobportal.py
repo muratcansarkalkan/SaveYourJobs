@@ -1,3 +1,4 @@
+import re
 class Indeed():
 
     def parser(soup):
@@ -11,14 +12,16 @@ class Indeed():
             print(company.text)
 
 class Linkedin():
-
     def parser(soup):
         # Finds job title
+
+        jobcard = []
         job_title = soup.find_all('h1', class_="top-card-layout__title topcard__title")
 
         for job in job_title:
             # Gives str
             job = job.text
+            jobcard.append(job)
 
         # Finds company
         company_title = soup.find_all('a', class_="topcard__org-name-link topcard__flavor--black-link")
@@ -26,14 +29,40 @@ class Linkedin():
         for company in company_title:
             # Gives str
             company = company.text.lstrip().rstrip()
+            jobcard.append(company)
 
         # Finds country
         country_title = soup.find_all('span', class_="sub-nav-cta__meta-text")
 
         for country in country_title:
             # Splits the location from "Istanbul, Turkey" to a list
-            location = country.text.split(", ")
-            # Gives str
-            location = location[-1]
+            location = country.text
+            jobcard.append(location)
             
-        print(company, job, location)
+        print(jobcard[0],jobcard[1],jobcard[2])
+
+class LinkedinSearch():
+    def parser(soup):
+
+        jobcards = soup.find_all('div', class_="base-search-card__info")
+        # job_titles = soup.find_all('span', class_="screen-reader-text")
+
+        # for jobbies in job_titles:
+        #     jobbies = jobbies.text.lstrip().rstrip()
+
+        # company_titles = soup.find_all('a', class_="hidden-nested-link")
+
+        # for compies in company_titles:
+        #     compies = compies.text.lstrip().rstrip()
+        for card in jobcards:
+            card = card.text
+            card = card.split("\n")
+            card = [i for i in card if i.strip()]
+            k = []
+
+            for i in card:
+                j = i.lstrip()
+                k.append(j)
+
+            print(k[0],k[1],k[2],k[4])
+

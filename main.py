@@ -30,8 +30,10 @@ while True:
 
     # lxml is the parser BeautifulSoup uses better use that way
     soup = BeautifulSoup(html,'lxml')
+    if re.search("linkedin.com/jobs/search", url, re.I):
+        jobportal.LinkedinSearch.parser(soup)
 
-    if re.search("linkedin", url, re.I):
+    elif re.search("linkedin", url, re.I):
         jobportal.Linkedin.parser(soup)
 
     elif re.search("indeed", url, re.I):
