@@ -2,8 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
 import ssl
 import re
-from linkedin import Linkedin
-from indeed import Indeed
+import jobportal
 from datetime import datetime
 
 # Ignore SSL certificate errors
@@ -33,14 +32,14 @@ while True:
     soup = BeautifulSoup(html,'lxml')
 
     if re.search("linkedin", url, re.I):
-        Linkedin.parser(soup)
+        jobportal.Linkedin.parser(soup)
 
     elif re.search("indeed", url, re.I):
-        Indeed.parser(soup)
+        jobportal.Indeed.parser(soup)
 
         # Prints today's date
-        date=datetime.today().strftime('%m/%d/%Y')
-
-        print(date)
     else:
         print("It is not valid")
+    
+    date=datetime.today().strftime('%m/%d/%Y')
+    print(date)
