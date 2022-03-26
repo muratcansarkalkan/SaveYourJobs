@@ -44,7 +44,9 @@ class Linkedin():
 class LinkedinSearch():
     def parser(soup):
 
-        jobcards = soup.find_all('div', class_="base-search-card__info")
+        jobcards = soup.find_all('div', class_="base-card base-card--link base-search-card base-search-card--link job-search-card")
+        #
+        # class_="base-search-card__info"
         # job_titles = soup.find_all('span', class_="screen-reader-text")
 
         # for jobbies in job_titles:
@@ -55,6 +57,12 @@ class LinkedinSearch():
         # for compies in company_titles:
         #     compies = compies.text.lstrip().rstrip()
         for card in jobcards:
+            
+            link = card.find('a', class_="base-card__full-link")['href']
+            # links = card.find_all('a')
+            # for a in links:
+            #     card.append(a)
+            
             card = card.text
             card = card.split("\n")
             card = [i for i in card if i.strip()]
@@ -64,5 +72,7 @@ class LinkedinSearch():
                 j = i.lstrip()
                 k.append(j)
 
-            print(k[0],k[1],k[2],k[4])
+            k = k[1:-1]
+            k.append(link)
+            print(k)
 
