@@ -7,3 +7,5 @@ In future I plan to add more scripts for more job portals and offer an Excel cre
 So far: Added LinkedIn Search, LinkedIn Specific Posting and Indeed Specific Posting parsing options.
 
 Update 26.03.2022: LinkedIn Search now gives links
+
+Update 27.03.2022: linkedinsearchengine.py added. This script helps you search jobs in LinkedIn. For now there are only 3 parameters (Query, Location, Job Type) but more will be added.
