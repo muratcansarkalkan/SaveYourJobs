@@ -45,6 +45,9 @@ class LinkedinSearch():
     def parser(soup):
 
         jobcards = soup.find_all('div', class_="base-card base-card--link base-search-card base-search-card--link job-search-card")
+
+        if len(jobcards) == 0:
+            print("No matching jobs found.")
         #
         # class_="base-search-card__info"
         # job_titles = soup.find_all('span', class_="screen-reader-text")
