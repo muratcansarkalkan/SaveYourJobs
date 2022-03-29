@@ -17,30 +17,53 @@ def query():
     # Define search filter and search settings
     searchfilter = []
     searchsettings = ""
+
     # Define query and convert to URL format
     query = input("Search by title, skill or company")
     query = urllib.parse.quote(query)
+
     # If query exists then filter is appended as keywords=query
     if len(query) > 0:
         searchfilter.append("keywords="+query)
+
     # Job type filter
     jobtypeoption = "f_JT="
     jobtypeselection = 0
+
     # Allows user to type job types until max types reached and adds up ",", if N is typed then next question
-    while jobtypeselection < 5:
-        jobtype = input("What kind of job do you look? (F)ullTime, (P)arttime, (C)ontract, (T)emporary, (I)nternship?, (N)o specific")
+    while jobtypeselection < 6:
+        jobtype = input("What kind of job do you look? (F)ullTime, (P)arttime, (C)ontract, (T)emporary, (I)nternship, (V)olunteer, (N)o specific")
         if jobtype == "N":
             break
         jobtypeoption += jobtype+","
         jobtypeselection += 1
     jobtypeoption = jobtypeoption.rstrip(",")
+
     # If jobtype option is chosen then it is appended to search filter
     if len(jobtypeoption) > 5:
         searchfilter.append(jobtypeoption)
+    # Now asks if it is onsite, hybrid or remote
+
+    worktypeoption = "f_WT="
+    worktypeselection = 0
+
+    while worktypeselection < 3:
+        worktype = input("What kind of job do you look? (1)On-site, (2)Remote, (3)Hybrid, (N)o specific")
+        if worktype == "N":
+            break
+        worktypeoption += worktype+","
+        worktypeselection += 1
+    worktypeoption = worktypeoption.rstrip(",")
+
+    # If worktype option is chosen then it is appended to search filter
+    if len(worktypeoption) > 5:
+        searchfilter.append(worktypeoption)
+
     # Now asks for location again converts to URL format
     location = ""
     location = input("City, state or zipcode")
     location = urllib.parse.quote(location)
+
     # If it is typed then filter is appended as location=location eg. location=Paris, Île-de-France, France
     if len(location) > 0:
         searchfilter.append("location="+location)
