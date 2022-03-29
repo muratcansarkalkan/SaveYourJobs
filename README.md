@@ -9,3 +9,5 @@ So far: Added LinkedIn Search, LinkedIn Specific Posting and Indeed Specific Pos
 Update 26.03.2022: LinkedIn Search now gives links
 
 Update 27.03.2022: linkedinsearchengine.py added. This script helps you search jobs in LinkedIn. For now there are only 3 parameters (Query, Location, Job Type) but more will be added.
+
+Update 29.03.2022: Added work type option
