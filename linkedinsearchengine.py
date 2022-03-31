@@ -92,7 +92,8 @@ if len(searchfunc) > 0:
 try:
     html = urllib.request.urlopen(link, context=ctx).read()
     soup = BeautifulSoup(html,'lxml')
-    jobportal.LinkedinSearch.parser(soup)
+    result = jobportal.LinkedinSearch.parser(soup)
+    print(result)
 
 except:
     print("No matching jobs found.")

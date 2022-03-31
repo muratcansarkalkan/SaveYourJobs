@@ -41,7 +41,20 @@ class Linkedin():
             
         print(jobcard[0],jobcard[1],jobcard[2])
 
+class LinkedinJobCard():
+    # Defined the object as title, company, location
+    def __init__(self, title, company, location, link):
+        self.title = title
+        self.company = company
+        self.location = location
+        self.link = link
+    
+    # Helps define a repr method for printing job object
+    def __repr__(self):
+        return "Job Title: " + str(self.title) + "; Company: " + str(self.company) + "; Location: " + str(self.location) + "; Link: " + str(self.link)
+
 class LinkedinSearch():
+    
     def parser(soup):
 
         jobcards = soup.find_all('div', class_="base-card base-card--link base-search-card base-search-card--link job-search-card")
@@ -59,6 +72,7 @@ class LinkedinSearch():
 
         # for compies in company_titles:
         #     compies = compies.text.lstrip().rstrip()
+        jobs = []
         for card in jobcards:
             
             link = card.find('a', class_="base-card__full-link")['href']
@@ -75,7 +89,10 @@ class LinkedinSearch():
                 j = i.lstrip()
                 k.append(j)
 
-            k = k[1:-1]
+            k = k[1:4]
             k.append(link)
-            print(k)
+
+            jobs.append(LinkedinJobCard(k[0],k[1],k[2],k[3]))
+
+        return jobs
 
