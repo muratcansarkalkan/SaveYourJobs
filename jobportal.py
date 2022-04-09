@@ -72,7 +72,8 @@ class LinkedinSearch():
 
         # for compies in company_titles:
         #     compies = compies.text.lstrip().rstrip()
-        jobs = []
+
+        joblist = []
         for card in jobcards:
             
             link = card.find('a', class_="base-card__full-link")['href']
@@ -92,7 +93,8 @@ class LinkedinSearch():
             k = k[1:4]
             k.append(link)
 
-            jobs.append(LinkedinJobCard(k[0],k[1],k[2],k[3]))
+            jobs = LinkedinJobCard(k[0],k[1],k[2],k[3])
+            joblist.append(jobs)
 
-        return jobs
+        return joblist
 

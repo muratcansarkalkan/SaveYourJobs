@@ -1,6 +1,7 @@
 import jobportal
 import urllib.request, urllib.parse, urllib.error
 import ssl
+import json
 from bs4 import BeautifulSoup
 
 # Ignore SSL certificate errors
@@ -93,7 +94,12 @@ try:
     html = urllib.request.urlopen(link, context=ctx).read()
     soup = BeautifulSoup(html,'lxml')
     result = jobportal.LinkedinSearch.parser(soup)
-    print(result)
+
+    jsonStr = json.dumps([i.__dict__ for i in result], indent=1)
+
+    with open('json_data.json', 'w') as outfile:
+        outfile.write(jsonStr)
+
 
 except:
     print("No matching jobs found.")
