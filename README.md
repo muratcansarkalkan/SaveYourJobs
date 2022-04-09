@@ -15,6 +15,8 @@ So far: Added LinkedIn Search, LinkedIn Specific Posting and Indeed Specific Pos
 <li>29.03.2022: Added work type option</li>
 
 <li>31.03.2022: Now jobs and links are stored as objects, instead of being printed. This is an important step while this script is converted to an UI-friendly HTML page.</li>
+
+<li>09.04.2022: The script handles jobs better, as it prints a well-formatted JSON output, instead of printing jobs in command line.</li>
 </ul>
 
 <h3>Prerequisites:</h3>
